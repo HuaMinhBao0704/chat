@@ -15,13 +15,13 @@ async function protectedRoute(req, res, next) {
         .json({ error: 'Unauthorized - No token provided' });
     }
 
-    // verify the token
+    // verify the token, if it's invalid, return an error
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     if (!decoded) {
       return res.status(401).json({ error: 'Unauthorized - Invalid token' });
     }
 
-    // get user info in db but do not get the password
+    // get user info in db without the password
     const user = await User.findById(decoded.userId).select('-password');
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
