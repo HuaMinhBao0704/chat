@@ -27,6 +27,7 @@ async function protectedRoute(req, res, next) {
       return res.status(404).json({ error: 'User not found' });
     }
 
+    // add user to the request (next middlewares will have access to it)
     req.user = user;
 
     // if everything is ok, continue to the next middleware
