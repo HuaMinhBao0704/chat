@@ -1,0 +1,73 @@
+import { Link } from 'react-router-dom';
+
+import GenderCheckbox from './GenderCheckbox';
+
+const SignUp = () => {
+  return (
+    <div className='mx-auto flex min-w-96 flex-col items-center justify-center'>
+      <div className='w-full rounded-lg bg-gray-400 bg-opacity-0 bg-clip-padding p-6 shadow-md backdrop-blur-lg backdrop-filter'>
+        <h1 className='text-center text-3xl font-semibold text-gray-500'>
+          Sign Up <span className='text-blue-500'>ChatApp</span>
+        </h1>
+
+        <form>
+          {/* Full name */}
+          <div>
+            <label className='label-text text-base'>Full name</label>
+            <input
+              type='text'
+              placeholder='Hua Minh Bao'
+              className='input input-bordered h-10 w-full'
+            />
+          </div>
+
+          {/* Username */}
+          <div>
+            <label className='label-text text-base'>Username</label>
+            <input
+              type='text'
+              placeholder='humiba'
+              className='input input-bordered h-10 w-full'
+            />
+          </div>
+
+          {/* password */}
+          <div>
+            <label className='label-text text-base'>Password</label>
+            <input
+              type='password'
+              placeholder='Password'
+              className='input input-bordered h-10 w-full'
+            />
+          </div>
+
+          {/* Confirm password */}
+          <div>
+            <label className='label-text text-base'>Confirm password</label>
+            <input
+              type='password'
+              placeholder='Confirm password'
+              className='input input-bordered h-10 w-full'
+            />
+          </div>
+
+          {/* GENDER CHECKBOX */}
+          <GenderCheckbox />
+
+          <Link
+            to={'/login'}
+            className='mt-2 inline-block text-sm hover:text-blue-600 hover:underline'
+          >
+            Already have an account?
+          </Link>
+
+          <div>
+            <button className='bnt-sm btn btn-block mt-2'>Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default SignUp;
