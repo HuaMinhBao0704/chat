@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
-import { baseUrl } from '../utils/baseUrl';
 import { useAuthContext } from '../context/AuthContext';
 
 const useLogin = () => {
@@ -12,12 +11,14 @@ const useLogin = () => {
     const isInputValid = handleInputErrors(username, password);
     if (!isInputValid) return;
     setLoading(true);
-    
+
     try {
-      const response = await fetch(`${baseUrl}/auth/login`, {
+      const response = await fetch(`/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username, password }),
+        // send the cookies to the server when user login (cookies will be used for other features, see useGetConversations.js for an example)
+        credentials: 'include'
       });
 
       const data = await response.json();

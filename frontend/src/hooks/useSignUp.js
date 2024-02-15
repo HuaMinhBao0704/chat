@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
-import { baseUrl } from '../utils/baseUrl';
 import { useAuthContext } from '../context/AuthContext';
 const useSignUp = () => {
   const [loading, setLoading] = useState(false);
@@ -27,7 +26,7 @@ const useSignUp = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${baseUrl}/auth/signup`, {
+      const response = await fetch(`/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
