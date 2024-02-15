@@ -1,13 +1,23 @@
+import { useEffect } from 'react';
+
 import Messages from './Messages';
 import MessageInput from './MessageInput';
 import NoChatSelected from './NoChatSelected';
+import useConversation from '../../zustand/useConversation';
 
 const MessageContainer = () => {
-  const noChatSelected = false;
+  const { selectedConversation, setSelectedConversation } = useConversation();
+
+  useEffect(() => {
+    // When the component unmounts, set the selected conversation to null
+    return () => setSelectedConversation(null);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setSelectedConversation]);
 
   return (
     <div className='flex flex-col md:min-w-[450px]'>
-      {noChatSelected ? (
+      {!selectedConversation ? (
         <NoChatSelected />
       ) : (
         <>
