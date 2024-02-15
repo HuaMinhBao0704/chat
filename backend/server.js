@@ -12,8 +12,8 @@ const app = express();
 // Middlewares
 app.use(express.json()); // Parse JSON bodies from incoming requests
 app.use(cookieParser());
-app.use(cors());
 app.use('/api', appRoute); // Routers
+app.use(cors({ credentials: true }));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
