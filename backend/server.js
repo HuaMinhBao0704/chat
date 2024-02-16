@@ -5,9 +5,9 @@ const cors = require('cors');
 
 const appRoute = require('./routes');
 const { connectToMongoDB } = require('./db/connectToMongoDB');
+const { app } = require('./socket/socket');
 
 dotenv.config();
-const app = express();
 
 // Middlewares
 app.use(express.json()); // Parse JSON bodies from incoming requests
