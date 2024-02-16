@@ -5,7 +5,7 @@ const cors = require('cors');
 
 const appRoute = require('./routes');
 const { connectToMongoDB } = require('./db/connectToMongoDB');
-const { app } = require('./socket/socket');
+const { app, server } = require('./socket/socket');
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ app.use('/api', appRoute); // Routers
 app.use(cors({ credentials: true }));
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectToMongoDB();
   console.log(`Server is running on port ${PORT}`);
 });
